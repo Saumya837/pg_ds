@@ -1,6 +1,0 @@
-comment = 'pg_ds:  Created by pgrx'
-default_version = '@CARGO_VERSION@'
-module_pathname = 'pg_ds'
-relocatable = false
-superuser = true
-trusted = false
