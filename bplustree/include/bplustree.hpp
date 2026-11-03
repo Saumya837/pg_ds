@@ -25,14 +25,13 @@ struct Node {
 struct InternalNode : Node {
     std::array<Key, MAX_KEYS> keys{};
     std::array<Key, MAX_KEYS + 1> children{};
-
     InternalNode() : Node(false) {}
 };
 
 struct LeafNode : Node {
     std::array<Key,  MAX_KEYS> keys{};
     std::array<Value, MAX_KEYS> values{};   // values[i] belongs to keys[i]
-    LeafNode* next = nullptr;               // right sibling, for range scans
+    LeafNode* next = nullptr;               // right sibling, for range scans=
 
     LeafNode() : Node(true) {}
     ~LeafNode() noexcept override = default;
@@ -42,3 +41,5 @@ struct LeafNode : Node {
     std::optional<Value> find(Key key) const;
     bool                 check() const;     // keys strictly increasing, size <= MAX_KEYS
 };
+
+int find_pos(const std::array<Key, MAX_KEYS>& keys, int size, Key key);
