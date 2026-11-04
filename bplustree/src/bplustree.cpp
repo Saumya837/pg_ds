@@ -22,9 +22,9 @@ InsertResult insert_key(int key, std::string value, int position, int &size,
     return InsertResult::Inserted; 
 }
 
-// split_node(int key, std::string value, int position, int size, std::array<Key, MAX_KEYS> &keys, std::array<std::string, MAX_KEYS> &values){
+split_node(int key, std::string value, int position, int size, std::array<Key, MAX_KEYS> &keys, std::array<std::string, MAX_KEYS> &values){
 
-// }
+}
 
 InsertResult insert_node(int key, std::string value, int position, int &size, 
     std::array<Key, MAX_KEYS> & keys, std::array<std::string, MAX_KEYS> &values){
