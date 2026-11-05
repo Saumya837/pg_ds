@@ -2,7 +2,6 @@
 #include <array>
 #include <cstdint>
 #include <optional>
-#include <string>
 
 constexpr int MAX_KEYS = 5;              // max keys per node
 constexpr int MIN_KEYS = (MAX_KEYS + 1) / 2;  // fill floor for non-root nodes (used in delete)
@@ -10,7 +9,7 @@ constexpr int MIN_KEYS = (MAX_KEYS + 1) / 2;  // fill floor for non-root nodes (
 using Key = int64_t;
 using Value = std::string;
 
-enum class InsertResult {Inserted, Updated, Full};
+enum class InsertResult {Inserted, Updated, Split};
 
 // Common header so the tree can hold either kind behind one pointer.
 struct Node {
@@ -42,4 +41,11 @@ struct LeafNode : Node {
     bool                 check() const;     // keys strictly increasing, size <= MAX_KEYS
 };
 
-int find_pos(const std::array<Key, MAX_KEYS>& keys, int size, Key key);
+struct LeafInsert {
+    InsertResult result;
+    Key       separator = 0;        // valid only when result == Split
+    LeafNode* new_leaf  = nullptr;  // valid only when result == Split
+};
+
+int find_position(const std::array<Key, MAX_KEYS> &keys, int size, Key key);
+LeafInsert insert_node(LeafNode* node, Key key, const Value& value);
