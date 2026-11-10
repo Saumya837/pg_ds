@@ -35,7 +35,7 @@ LeafNode* split_node(LeafNode* node, int key, std::string value, int position){
     }
     node->size = idx1;
     if(position > mid){
-        insert_key(key, value, position - mid, new_node->size, new_node->keys, new_node->values);
+        insert_key(key, value, position - idx1, new_node->size, new_node->keys, new_node->values);
     }
     else{
         insert_key(key, value, position, node->size, node->keys, node->values);

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbplustree.a CMakeFiles/bplustree.dir/src/leaf_node.cpp.o
+/usr/bin/ranlib libbplustree.a
