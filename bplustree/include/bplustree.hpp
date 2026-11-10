@@ -2,6 +2,7 @@
 #include <array>
 #include <cstdint>
 #include <optional>
+#include <string>      
 
 constexpr int MAX_KEYS = 5;              // max keys per node
 constexpr int MIN_KEYS = (MAX_KEYS + 1) / 2;  // fill floor for non-root nodes (used in delete)
@@ -49,3 +50,4 @@ struct LeafInsert {
 
 int find_position(const std::array<Key, MAX_KEYS> &keys, int size, Key key);
 LeafInsert insert_node(LeafNode* node, Key key, const Value& value);
+
