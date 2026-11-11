@@ -1,0 +1,2 @@
+/usr/bin/ar qc libextsort.a CMakeFiles/extsort.dir/src/page_io.cpp.o
+/usr/bin/ranlib libextsort.a

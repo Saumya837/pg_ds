@@ -1,0 +1,4 @@
+/Users/somyakumar/pg_ds/extsort/build/CMakeFiles/extsort.dir
+/Users/somyakumar/pg_ds/extsort/build/CMakeFiles/gen.dir
+/Users/somyakumar/pg_ds/extsort/build/CMakeFiles/edit_cache.dir
+/Users/somyakumar/pg_ds/extsort/build/CMakeFiles/rebuild_cache.dir
