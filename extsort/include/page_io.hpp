@@ -1,4 +1,5 @@
 #pragma once
+#include <cerrno>
 #include <cstddef>
 #include <cstdint>
 #include <fcntl.h>
@@ -28,8 +29,11 @@ public:
             throw std::system_error(errno, std::generic_category(), path);
    }
 
-   ~FileHandle()  { 
-        close();
+   ~FileHandle() noexcept {
+        try {
+            close();
+        } catch (...) {
+        }
     }
 
     int release() noexcept {
@@ -42,21 +46,27 @@ public:
         return fd_;
     }
 
-    
-
    FileHandle(const FileHandle&) = delete;
    FileHandle& operator=(const FileHandle&) = delete;
 
-    bool close() noexcept {
-        if(fd_ >= 0) {
-            ::close(fd_);
-            fd_ = -1;
+   FileHandle(FileHandle&& other) noexcept : fd_(other.release()){}
+
+   FileHandle& operator=(FileHandle&& other) noexcept{
+        if(this != &other){
+            close();
+            fd_ = other.release();
+        }
+        return *this;
+   }
+
+    void close() {
+        if (fd_ >= 0) {
+            if (::close(fd_) < 0)
+                throw std::system_error(errno, std::generic_category(), "close");
+            else
+                fd_ = -1;
         }
     }
 };
 
-
-// features
-void write_page();
-void read_page();
 
